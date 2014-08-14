@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "Obelix";
+    src: url(../fonts/ObelixPro-cyr.ttf) format("truetype");
+}
+
+input {
+	width: 240px;
+	padding: 5px;
+	font-size: 1em;
+	text-align: center;
+	border: none;
+	outline: none;
+	font-family: "peachy-keen", "Obelix", Tahoma, Helvetica, Arial, sans-serif;
+}
+
+input:focus {
+	outline: none;
+}
+
+p {
+	margin: 15px 0;
+	font-size: 16px;
+	color: #fed61b;
+}
+
+p.white {
+	margin: 5px 0;
+	color: #fff;
+}
+
+a {
+	color: #fed61b;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #fff;
+}
+
+p, h1, h2, h3, h4, h5, h6, table, a {
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+}

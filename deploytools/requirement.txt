@@ -1,0 +1,6 @@
+Fabric==1.7.0
+argparse==1.2.1
+paramiko==1.11.0
+pycrypto==2.6
+requests==1.2.3
+wsgiref==0.1.2

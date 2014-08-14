@@ -1,0 +1,191 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	min-height: 320px;
+}
+
+body {
+	background-image: url('../images/backgrounds/dojo.jpg');
+	/*background-size: cover; */
+	background-repeat: no-repeat;
+	background-position: center top;
+	font-family: "peachy-keen", "Obelix", Tahoma, Helvetica, Arial, sans-serif;
+	width: 100%;
+	height: 100%;
+	min-height: 320px;
+}
+
+html.game-mode {
+	width: 100%;
+	height: 100%;
+}
+
+html.game-mode body {
+	background-image: none;
+	background-color: #222;
+}
+
+.pre-game-container {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+html.game-mode .pre-game-container {
+	display: none;
+}
+
+.pre-game-container > div {
+	margin: 10px auto;
+	width: 240px;
+	background-color: rgba(0, 0, 0, 0.7);
+	border: 3px solid #fed61b;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.pre-game-container .choose-name-container {
+}
+
+.pre-game-container .choose-name-container input {
+	width: auto;
+}
+
+.pre-game-container .scroll-left-arrow,
+.pre-game-container .scroll-right-arrow {
+	position: absolute;
+	top: 80px;
+	color: yellow;
+	z-index: 10;
+}
+
+.pre-game-container .scroll-left-arrow { left: 20px; }
+.pre-game-container .scroll-right-arrow { right: 20px; }
+
+.red-ninja-text { color: #fe1b1b; }
+.green-ninja-text { color: #5bfe1b; }
+.blue-ninja-text { color: #1bd6fe; }
+.yellow-ninja-text { color: #fed61b; }
+
+.pre-game-container .join-button a {
+	display: block;
+	width: 100%;
+}
+
+.controller-container {
+	position: relative;
+	display: none;
+	height: 100%;
+	min-height: 320px;
+	-webkit-user-select	: none;
+	-moz-user-select	: none;
+	border-radius: 100px;
+}
+
+.controller-inner-container {
+	border-radius: 80px;
+	height: 100%;
+	min-height: 320px;
+}
+
+html.game-mode .controller-container {
+	display: block;
+
+}
+
+.joystick-section {
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+.joystick-section .joystick-instructions {
+	position: absolute;
+	width: 90%;
+	left: 5%;
+	text-align: center;
+	font-size: 14px;
+}
+
+.controller-inner-container-portrait .joystick-section .joystick-instructions {
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	width: 180px;
+	left: 80px;
+	top: 70px;
+}
+
+.controller-inner-container-landscape .joystick-section .joystick-instructions {
+	width: 100%;
+	margin-top: 40%;
+	left: 0;
+}
+
+.joystick-left {
+	background-color: #000;
+}
+
+.controller-inner-container-portrait .joystick-section {
+	width: 100%;
+	height: 50%;
+}
+
+.controller-inner-container-landscape .joystick-section {
+	width: 50%;
+	height: 100%;
+	min-height: 320px;
+	float: left;
+}
+
+.controller-stick {
+	width: 100%;
+	height: 100%;
+}
+
+.controller-button {
+	position: absolute;
+	background-size: 100% 100%;
+	background-position: center center;
+	width: 130px;
+	height: 130px;
+}
+
+#shoot-button {
+	background-image: url('../images/controller/shoot.png');
+}
+
+.controller-inner-container-portrait #shoot-button {
+	bottom: 30px;
+	left: 20px;
+}
+
+.controller-inner-container-landscape #shoot-button {
+	bottom: 20px;
+	right: 30px;
+	transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+}
+
+#block-button {
+	background-image: url('../images/controller/block.png');
+}
+
+.controller-inner-container-portrait #block-button {
+	bottom: 30px;
+	left: 170px;
+}
+
+.controller-inner-container-landscape #block-button {
+	bottom: 180px;
+	right: 30px;
+	transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+}
+

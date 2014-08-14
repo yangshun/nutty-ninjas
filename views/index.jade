@@ -1,0 +1,81 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/css/animate.css')
+  link(rel='stylesheet', href='/css/landing.css')
+  div(class="landing-container desktop-container")
+    div(class="logo")
+    div(class="katana katana-left")
+    div(class="katana katana-right")
+    div(class="text-container")
+      h3
+        a(onclick="hostGamePressed()") Create Game
+        br
+        p After clicking 'Create Game', visit the <br/>site on your mobile device and enter the<br/> room number shown on the next screen
+      //- h3
+        a View Games
+  div(class="landing-container mobile-container")
+    img(class="logo-img" src="/images/logo.png")
+    div(class="text-container")
+      //- h5
+      //-   a(href="/join/", class="webapp-link") QUICK JOIN
+      //- p(class="white") - OR -
+      h5
+        //- a(onclick="revealInput()", class="to-be-hidden") JOIN A ROOM
+        div(class="room-section")
+          p Enter the room number<br/> of the game to join
+          input(id="room-number")
+          p(class="join-button", onclick="joinRoom()") JOIN!
+          p(class="white to-be-hidden") <br/>Please lock your phone's orientation to Portrait mode before playing
+
+  script.
+    $(document).ready(function() {
+      entryAnimation();
+      $('.katana').click(repeatSwordAnimation);
+    });
+
+    function entryAnimation() {
+      $('.logo').addClass('animated bounceInDown');
+      $('.logo-img').addClass('animated bounceInDown');
+      setTimeout(function() {
+        $('.logo').removeClass('bounceInDown')
+        $('.logo').addClass('pulse');
+        $('.logo-img').removeClass('bounceInDown')
+        $('.logo-img').addClass('pulse');
+      }, 1000);
+      $('.katana-left').addClass('katana-left-final');
+      $('.katana-right').addClass('katana-right-final');
+    }
+
+    function repeatSwordAnimation() {
+      $('.katana-left').removeClass('katana-left-final');
+      $('.katana-right').removeClass('katana-right-final');
+      setTimeout(function() {
+        $('.katana-left').addClass('katana-left-final');
+        $('.katana-right').addClass('katana-right-final');
+      }, 1000);
+    }
+
+    $(".webapp-link").on("click", function(event){
+      event.preventDefault();
+      window.location.href = $(event.target).attr("href");
+    });
+
+    function revealInput() {
+      $('.to-be-hidden').hide();
+      $('.room-section').show();
+    }
+
+    function hostGamePressed() {
+      var room_id = Math.floor(Math.random() * 1000);
+      window.location.href = '/play/' + room_id; 
+    }
+
+    function joinRoom() {
+      var room_num = $('#room-number').val();
+      if (room_num) {
+        window.location.href = '/join/' + room_num;
+      } else {
+        alert('Please enter a room number!');
+      }
+    }

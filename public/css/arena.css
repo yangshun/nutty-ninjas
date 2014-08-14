@@ -1,0 +1,118 @@
+body {
+  font: 14px "peachy-keen", "Obelix", Tahoma, Helvetica, Arial, sans-serif;
+  position: relative;
+  margin: 0;
+  background-color: black;
+}
+
+.yellow { 
+	color: #fed61b;
+}
+
+.room-number {
+	font-size: 32px;
+}
+
+.arena-url {
+	margin-top: 10px;
+}
+
+.leaderboard {
+	text-align: left;
+	position: absolute;
+	right: 0;
+	top: 48px; 
+	width: 200px;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.7);
+	margin-top: 2px;
+}
+
+.leaderboard th {
+	/*background-color: #fff;*/
+	color: #fff;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-bottom: 1px solid #fed61b;
+}
+
+.leaderboard td {
+	color: #fed61b;
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.leaderboard p {
+	color: #fff;
+}
+
+.status-bar {
+	height: 48px;
+	/*background-color: #fed61b;*/
+	background-image: url('navy_blue.png');
+	background-repeat: repeat;
+	border-bottom: 2px solid #e4c018;
+}
+
+.status-bar div {
+	display: inline-block;
+}
+
+.status-bar .status-left-section,
+.status-bar .status-right-section {
+	width: 35%;
+}
+
+.status-bar .status-right-section {
+	text-align: center;
+}
+
+.status-bar .status-left-section p {
+	font-size: 16px;
+	line-height: 48px;
+	margin: 0;
+}
+
+.status-bar .status-left-section p i {
+	padding-left: 20px;
+}
+
+.green {
+	color: green;
+}
+
+.status-bar .status-middle-section {
+	text-align: center;
+	width: 30%;
+}
+
+.status-bar .status-middle-section {
+	margin: 0;
+	font-size: 24px;
+	line-height: 48px;
+	color: #fed61b;
+}
+
+.status-bar .score {
+	font-size: 18px;
+}
+
+.status-bar .score.radiant {
+	color: red;
+}
+
+.status-bar .score.dire {
+	color: #56a854;
+}
+
+.status-bar .countdown-timer {
+
+}
+
+.status-bar .status-middle-section .countdown-timer {
+
+}
+
+

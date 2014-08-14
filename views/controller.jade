@@ -1,0 +1,76 @@
+extends layout_mobile
+
+block header
+
+block content
+
+  script(type='text/javascript', src='/lib/virtualjoystick.js')
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  link(rel="stylesheet", href="/css/idangerous.swiper.css")
+  script(type='text/javascript', defer, src='/lib/idangerous.swiper-2.0.min.js')
+  script(type='text/javascript', src='/lib/virtualjoystick.js')
+  script(type='text/javascript', src='/js/controller/controller.js')
+  div(class="pre-game-container")
+    div(class="choose-name-container")
+      p Enter your name
+      input(type = 'textfield',id='playername', name = 'name', value = '')
+    div(class="choose-ninja")
+      p Swipe left/right and <br/>choose a Nutty Ninja!
+
+      div(class="swiper-container")
+        i(class="fa fa-chevron-left scroll-left-arrow")
+        i(class="fa fa-chevron-right scroll-right-arrow")
+        div(class="swiper-wrapper")
+          div(class="swiper-slide")
+            img(src="/images/ninjas/ninja-red.png", width="128", height="128")
+            p(class="red-ninja-text") Fire Ninja
+          div(class="swiper-slide")
+            img(src="/images/ninjas/ninja-green.png", width="128", height="128")
+            p(class="green-ninja-text") Leaf Ninja
+          div(class="swiper-slide")
+            img(src="/images/ninjas/ninja-blue.png", width="128", height="128")
+            p(class="blue-ninja-text") Aqua Ninja
+          div(class="swiper-slide")
+            img(src="/images/ninjas/ninja-yellow.png", width="128", height="128")
+            p(class="yellow-ninja-text") Lightning Ninja
+
+      //- label(for="ninja-red")
+      //-   img(id="red-ninja" src="/images/ninja-red.png" width="128" height="128")
+      //- input(type = 'radio', name='ninjaChoose', id='ninja-red', value = 'red', checked='checked')
+      //- label(for="ninja-yellow")
+      //-   img(id="yellow-ninja" src="/images/ninja-yellow.png" width="128" height="128")
+      //- input(type="radio", name='ninjaChoose', id='ninja-yellow', value = 'yellow')
+    //- div(class="index-button")
+    //-   a Index!
+    div(class="join-button")
+      a Play!
+    div
+      a(href="/") Back to Main
+  div(class="controller-container")
+    div(class="controller-inner-container controller-inner-container-portrait")
+      div(class="joystick-section joystick-left" id="left-section")
+        p(class="joystick-instructions") Press anywhere in this region to activate the joystick!
+        div(class="controller-stick" id="controller-stick")
+      div(class="joystick-section joystick-right" id="right-section")
+        div(class="controller-button" id="shoot-button")
+        div(class="controller-button" id="block-button")
+  script.
+    $(document).ready(function() {
+      //- var myPhotoSwipe = $("#Gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: false });
+      //- console.log(myPhotoSwipe)
+      var initSwiper = function() {
+        mySwiper = $('.swiper-container').swiper({
+          //Your options here:
+          mode:'horizontal',
+          loop: true
+        });
+        $('.scroll-left-arrow').click(mySwiper.swipePrev);
+        $('.scroll-right-arrow').click(mySwiper.swipeNext);
+        $('.index-button').click(function() {
+          console.log(mySwiper.activeIndex);
+        });
+      }
+      $(function(){
+        initSwiper();
+      })
+    });

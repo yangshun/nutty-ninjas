@@ -1,0 +1,132 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  link(rel='stylesheet', href='/css/arena.css')
+  //- Libraries and utilities
+  script(type='text/javascript', src='/lib/box2d.js')
+  script(type='text/javascript', src='/lib/stats.min.js')
+  script(type='text/javascript', src='/js/misc/utilities.js')
+  script(type='text/javascript', src='/lib/pubsub.js')
+  script(type='text/javascript', src='/lib/angular.min.js')
+
+  //- Factories
+  script(type='text/javascript', src='/js/arena/factories/ninja_school.js')
+  script(type='text/javascript', src='/js/arena/factories/gun_factory.js')
+  script(type='text/javascript', src='/js/arena/factories/monster_hell.js')
+  script(type='text/javascript', src='/js/arena/sound.js')
+  
+  //- Game Models
+  script(type='text/javascript', src='/js/arena/models/player.js')
+  script(type='text/javascript', src='/js/arena/models/game_object.js')
+  script(type='text/javascript', src='/js/arena/models/collidable_object.js')
+  script(type='text/javascript', src='/js/arena/models/shield.js')
+  script(type='text/javascript', src='/js/arena/models/controllable_object.js')
+  script(type='text/javascript', src='/js/arena/models/ninja.js')
+  script(type='text/javascript', src='/js/arena/models/monster.js')
+  script(type='text/javascript', src='/js/arena/effects.js')
+  script(type='text/javascript', src='/js/arena/arena.js')
+  script(type='text/javascript', src='/js/arena/arena_keyboard.js')
+  script(type='text/javascript', src='/js/arena/arena_socket.js')
+
+  //- Shurikens
+  script(type='text/javascript', src='/js/arena/models/shurikens/shuriken.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/banana.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/hulk_fist.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/rocket.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/snowflake.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/plasma.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/laser.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/meme.js')
+  script(type='text/javascript', src='/js/arena/models/shurikens/flame.js')
+
+  //- Guns
+  script(type='text/javascript', src='/js/arena/models/guns/shuriken_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/banana_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/juggernaut_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/hulk_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/frost_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/plasma_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/laser_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/meme_gun.js')
+  script(type='text/javascript', src='/js/arena/models/guns/flamethrower.js')
+
+  //- Game Maps
+  script(type='text/javascript', src='/js/arena/map/map_config.js')
+  script(type='text/javascript', src='/js/arena/map/tile.js')
+  script(type='text/javascript', src='/js/arena/map/powerup.js')
+  script(type='text/javascript', src='/js/arena/map/map.js')
+
+  //- Managers
+  script(type='text/javascript', src='/js/arena/managers/collision.js')
+  script(type='text/javascript', src='/js/arena/managers/timedevent.js')
+
+  //- Game
+  script(type='text/javascript', src='/js/arena/game.js')
+  script(type='text/javascript', src='/js/arena/arena-controller.js')
+  script(type='text/javascript', src='/js/arena/killboard.js')
+  script(type='text/javascript', src='/js/arena/leaderboard-controller.js')
+
+  block game
+
+  div(class="status-bar")
+    div(class="status-left-section" id="pause-button")
+      p
+        a(ng-show="!game_paused" ng-click="pauseGame()")
+          <i class="fa fa-pause"></i> Pause &nbsp;
+        a(ng-show="game_paused" ng-click="pauseGame()")
+          <i class="fa fa-play"></i> Play &nbsp;
+        a(ng-show="sound_on" ng-click="toggleSound()")
+          <i class="fa fa-volume-off"></i> Music On
+        a(ng-show="!sound_on" ng-click="toggleSound()")
+          <i class="fa fa-volume-up"></i> Music Off
+        a( ng-click="changeTerrain()")
+          <i class="fa fa-globe"></i> Change Terrain
+      //- p &nbsp;To join the game, log on to 
+        span(class="green") {{ current_url }} 
+        on on your mobile device!
+    div(class="status-middle-section")
+        //- div(class="status-left-section score radiant") Aka - {{ radiant_score }}
+        div(class="status-middle-section countdown-timer") {{ time_left }}
+        //- div(class="status-right-section score dire") {{ dire_score }} - Kiiro 
+    div(class="status-right-section")
+      p {{ game_message }}
+
+  div(class="leaderboard", ng-controller="LeaderboardController")
+    //- p {{player_list}}
+    h3(ng-show="current_room") Room No: <span class="yellow room-number"> {{ current_room }} </span>
+    p(class="arena-url") Visit <span class="yellow">{{ current_url }}</span> <br/>on your mobile <span ng-show="!current_room"> and select <span class="yellow">QUICK JOIN</span></span> to play!
+    
+    hr
+    h2(class="yellow") Leaderboard
+    table(ng-show="player_list.length != 0")
+      tr
+        th(width="120") Player
+        th(width="30") K
+        th(width="30") D
+
+      tr(ng-repeat="player in player_list | orderBy:'-kills'")
+        td {{player.name}}
+        td {{player.kills}}
+        td {{player.deaths}}
+    p(ng-show="player_list.length == 0") No players active!
+
+  //- script
+  //-   var stats = new Stats();
+  //-   stats.setMode(0); // 0: fps, 1: ms
+
+  //-   // Align top-left
+  //-   stats.domElement.style.position = 'absolute';
+  //-   stats.domElement.style.left = '0px';
+  //-   stats.domElement.style.top = '48px';
+
+  //-   document.body.appendChild( stats.domElement );
+
+  //-   setInterval( function () {
+  //-       stats.begin();
+  //-       stats.end();
+  //-   }, 1000 / 60 );
+
+  canvas(id='gameCanvas', height='420', width='720')
+
+  div(id='fps_counter')

@@ -1,0 +1,33 @@
+doctype 5
+html
+  head
+    title= title
+
+    //- Font
+    script(type="text/javascript", src="//use.typekit.net/rxt6ovh.js")
+    script(type="text/javascript") try{Typekit.load();}catch(e){}
+
+    //- Stylesheets
+    link(rel='stylesheet', href='/lib/jquery.mobile.custom.structure.css')
+    link(rel='stylesheet', href='/lib/jquery.mobile.custom.theme.css')
+    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/controller.css')
+    link(rel="apple-touch-icon-precomposed", href="/images/icons/icon-256.png")
+
+    //- Utility
+    script(type='application/javascript', src='/lib/fastclick.min.js')
+    script(type='application/javascript', src='/lib/jquery.1.10.2.min.js')
+    script(type='application/javascript', src='/lib/jquery.mobile.custom.min.js')
+    script(type='text/javascript', src='/lib/underscore-min.js')
+    
+    //- Network
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/una_js/una.js');
+    
+    //- Meta Tags
+    meta(name="viewport", content="initial-scale=1.0, width=device-width, user-scalable=no")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style", content="black")
+    block header
+  body
+    block content
